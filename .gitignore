@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+
+# Packaging
+dist/
+build/
+*.egg-info/
+
+# Local workgraph (dogfood)
+.workgraph/
+

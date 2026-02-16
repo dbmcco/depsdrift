@@ -1,0 +1,13 @@
+import unittest
+
+
+class TestImports(unittest.TestCase):
+    def test_imports(self) -> None:
+        import depsdrift.cli  # noqa: F401
+        import depsdrift.drift  # noqa: F401
+        import depsdrift.specs  # noqa: F401
+
+
+if __name__ == "__main__":
+    unittest.main()
+

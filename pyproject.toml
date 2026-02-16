@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "depsdrift"
+version = "0.1.0"
+description = "Speedrift-suite dependency lock drift checker for Workgraph"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+depsdrift = "depsdrift.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["depsdrift*"]
+
