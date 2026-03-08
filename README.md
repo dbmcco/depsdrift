@@ -58,3 +58,28 @@ depsdrift --dir . wg check --task <id> --write-log --create-followups
 Exit codes:
 - `0`: clean
 - `3`: findings exist (advisory)
+
+## Agent Guidance
+
+This section is for AI agents (Claude Code, Codex, Amplifier) working in Speedrift-managed repos.
+
+### When This Lane Runs
+
+`depsdrift` runs automatically when a task description contains a fenced `depsdrift` TOML block. It is also triggered by `driftdriver` during factory cycles and attractor loop passes.
+
+### Per-Task Workflow
+
+1. Add a `depsdrift` fence to task descriptions that touch package manifests and lock files
+2. Run drift checks at task start and before completion:
+   ```bash
+   ./.workgraph/drifts check --task <id> --write-log --create-followups
+   ```
+3. Drift is advisory — never hard-block the current task
+4. If findings appear, prefer follow-up tasks over scope expansion
+
+### Key Rules
+
+- Exit code `0` = clean, `3` = findings exist (advisory)
+- Follow-up tasks are deduped and capped at 3 per lane per repo
+- Do not suppress findings — let driftdriver manage significance scoring
+- Do not modify `depsdrift` spec blocks without understanding the lane contract
