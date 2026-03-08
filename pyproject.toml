@@ -8,7 +8,9 @@ version = "0.1.0"
 description = "Speedrift-suite dependency lock drift checker for Workgraph"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "speedrift-lane-sdk",
+]
 
 [project.scripts]
 depsdrift = "depsdrift.cli:main"
@@ -16,4 +18,12 @@ depsdrift = "depsdrift.cli:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["depsdrift*"]
+
+[tool.uv.sources]
+speedrift-lane-sdk = { path = "../speedrift-lane-sdk", editable = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]
 
